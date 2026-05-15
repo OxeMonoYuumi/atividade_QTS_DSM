@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
+
 # Teste modo incorreto com time.sleep
 def test_create_user_e2e():
     options = Options()
@@ -33,6 +34,7 @@ def test_create_user_e2e():
     assert any("Pedro" in user.text for user in users)
 
     driver.quit()
+
 
 def test_create_users_e2e():
     options = Options()

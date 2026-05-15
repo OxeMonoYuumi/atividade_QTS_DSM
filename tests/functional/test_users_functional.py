@@ -2,6 +2,7 @@ import pytest
 from app import create_app
 from app.services import user_service
 
+
 @pytest.fixture
 def client():
     app = create_app()
@@ -9,6 +10,7 @@ def client():
     user_service.current_id = 1
 
     return app.test_client()
+
 
 def test_user_flow(client):
     # 1. Criar usuário
@@ -35,6 +37,7 @@ def test_user_flow(client):
     response = client.get(f"/users/{user_id}")
     assert response.status_code == 404
 
+
 def test_list_users(client):
     client.post("/users", json={"name": "User1"})
     client.post("/users", json={"name": "User2"})
@@ -45,6 +48,7 @@ def test_list_users(client):
 
     assert response.status_code == 200
     assert len(data) == 2
+
 
 def test_create_3_new_users_and_list(client):
     client.post("/users", json={"name": "Rodrigo"})
@@ -57,3 +61,11 @@ def test_create_3_new_users_and_list(client):
 
     assert response.status_code == 200
     assert len(data) == 3
+
+
+def test_should_return_400_when_user_already_exists(client):
+    client.post("/users", json={"name": "Pedro"})
+
+    response = client.post("/users", json={"name": "Pedro"})
+
+    assert response.status_code == 400
