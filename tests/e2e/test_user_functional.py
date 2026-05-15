@@ -3,7 +3,13 @@ from selenium.webdriver.common.by import By
 
 # Teste modo incorreto com time.sleep
 def test_create_user_e2e():
-    driver = webdriver.Chrome()
+    options = Options()
+
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    driver = webdriver.Chrome(options=options)
 
     driver.get("http://localhost:5000")
 
