@@ -1,0 +1,29 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+
+# Teste modo incorreto com time.sleep
+def test_create_user_e2e():
+    driver = webdriver.Chrome()
+
+    driver.get("http://localhost:5000")
+
+    input_name = driver.find_element(By.ID, "name")
+    input_name.send_keys("Pedro")
+
+    button = driver.find_element(By.ID, "submit")
+    button.click()
+
+    from selenium.webdriver.support.ui import WebDriverWait
+
+    wait = WebDriverWait(driver, 5)
+
+    wait.until(
+        lambda d: any("Pedro" in el.text for el in d.find_element(By.TAG_NAME, "li"))
+    )
+
+    users = driver.find_element(By.TAG_NAME, "li")
+
+    assert any("Pedro" in user.text for user in users)
+
+    driver.quit()
