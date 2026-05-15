@@ -64,6 +64,7 @@ def test_create_users_e2e():
     assert any("Marcos" in user.text for user in users)
 
     input_name = driver.find_element(By.ID, "name")
+    input_name.clear()
     input_name.send_keys("William")
 
     button = driver.find_element(By.ID, "submit")
