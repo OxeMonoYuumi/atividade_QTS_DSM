@@ -1,7 +1,7 @@
 import pytest
-from app.services.user_service import users
-
+import app.services.user_service as user_service
 
 @pytest.fixture(autouse=True)
 def clear_users():
-    users.clear()
+    user_service.users.clear()
+    user_service.current_id = 1
