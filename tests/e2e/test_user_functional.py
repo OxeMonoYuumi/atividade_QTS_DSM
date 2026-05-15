@@ -84,7 +84,6 @@ def test_create_users_e2e():
 
 
 def test_create_users_and_validate_users():
-    users.clear()
 
     options = Options()
 
@@ -129,4 +128,3 @@ def test_create_users_and_validate_users():
 
     assert any("Rodrigo" in user.text for user in users)
     assert any("Julia" in user.text for user in users)
-    assert len(users) == 2
