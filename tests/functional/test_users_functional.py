@@ -43,7 +43,7 @@ def test_list_users(client):
 
     data = response.get_json()
 
-    assert response.status_code == 201
+    assert response.status_code == 200
     assert len(data) == 2
 
 def test_create_3_new_users_and_list(client):
@@ -53,7 +53,7 @@ def test_create_3_new_users_and_list(client):
 
     response = client.get("/users")
 
-    data = response.client.get_json()
+    data = response.get_json()
 
-    assert response.status_code == 201
+    assert response.status_code == 200
     assert len(data) == 3
