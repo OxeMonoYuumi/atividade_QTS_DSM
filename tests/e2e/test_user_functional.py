@@ -81,3 +81,50 @@ def test_create_users_e2e():
     assert any("William" in user.text for user in users)
 
     driver.quit()
+
+
+def test_create_users_and_validate_users():
+    options = Options()
+
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    driver = webdriver.Chrome(options=options)
+
+    driver.get("http://localhost:5000")
+
+    input_name = driver.find_element(By.ID, "name")
+    input_name.send_keys("Rodrigo")
+
+    button = driver.find_element(By.ID, "submit")
+    button.click()
+
+    from selenium.webdriver.support.ui import WebDriverWait
+
+    wait = WebDriverWait(driver, 5)
+
+    wait.until(lambda d: "Rodrigo" in d.page_source)
+
+    users = driver.find_elements(By.TAG_NAME, "li")
+
+    assert any("Rodrigo" in user.text for user in users)
+
+    input_name = driver.find_element(By.ID, "name")
+    input_name.clear()
+    input_name.send_keys("Julia")
+
+    button = driver.find_element(By.ID, "submit")
+    button.click()
+
+    from selenium.webdriver.support.ui import WebDriverWait
+
+    wait = WebDriverWait(driver, 5)
+
+    wait.until(lambda d: "Julia" in d.page_source)
+
+    users = driver.find_elements(By.TAG_NAME, "li")
+
+    assert any("Rodrigo" in user.text for user in users)
+    assert any("Julia" in user.text for user in users)
+    assert len(users) == 2 
