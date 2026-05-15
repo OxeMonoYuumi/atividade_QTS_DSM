@@ -46,6 +46,9 @@ def create():
 
     user = create_user(data)
 
+    if user is None:
+        return jsonify({"error": "User already exists"}), 400
+
     return jsonify(user), 201
 
 
