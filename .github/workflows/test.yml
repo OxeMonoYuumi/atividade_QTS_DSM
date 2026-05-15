@@ -23,6 +23,9 @@ jobs:
         pip install -r requirements.txt
         pip install black flake8 pytest
     
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@v1
+
     - name: Rodar Black
       run: black .
 
