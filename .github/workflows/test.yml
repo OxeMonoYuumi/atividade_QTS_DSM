@@ -34,7 +34,7 @@ jobs:
       run: sleep 5
 
     - name: Rodar Black
-      run: black .
+      run: black --check .
 
     - name: Rodar Flake8
       run: flake8 .
