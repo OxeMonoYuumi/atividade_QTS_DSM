@@ -22,5 +22,11 @@ jobs:
       run: |
         pip install -r requirements.txt
     
+    - name: Rodar Black
+      run: black .
+
+    - name: Rodar Flake8
+      run: flake8 .
+
     - name: Rodar testes
       run: pytest
