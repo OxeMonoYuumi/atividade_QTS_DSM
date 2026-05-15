@@ -41,13 +41,12 @@ def get_user(user_id):
 def create():
     data = request.get_json()
 
-    print(request.data)
-    print(request.get_json())
-
     if not data or "name" not in data:
         return jsonify({"error": "name is required"}), 400
 
     user = create_user(data)
+
+    print(user)
 
     if user is None:
         return jsonify({"error": "User already exists"}), 400
