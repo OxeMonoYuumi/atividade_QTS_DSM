@@ -28,7 +28,7 @@ def test_create_user_e2e():
         lambda d: any("Pedro" in el.text for el in d.find_elements(By.TAG_NAME, "li"))
     )
 
-    users = driver.find_element(By.TAG_NAME, "li")
+    users = driver.find_elements(By.TAG_NAME, "li")
 
     assert any("Pedro" in user.text for user in users)
 
