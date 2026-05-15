@@ -84,6 +84,8 @@ def test_create_users_e2e():
 
 
 def test_create_users_and_validate_users():
+    users.clear()
+
     options = Options()
 
     options.add_argument("--headless=new")
