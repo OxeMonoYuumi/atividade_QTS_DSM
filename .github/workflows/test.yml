@@ -21,6 +21,7 @@ jobs:
     - name: Instalar depedências
       run: |
         pip install -r requirements.txt
+        pip install black flake8 pytest
     
     - name: Rodar Black
       run: black .
