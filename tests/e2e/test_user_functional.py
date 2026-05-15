@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import time
 
 # Teste modo incorreto com time.sleep
 def test_create_user_e2e():
