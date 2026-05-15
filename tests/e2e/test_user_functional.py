@@ -25,7 +25,7 @@ def test_create_user_e2e():
     wait = WebDriverWait(driver, 5)
 
     wait.until(
-        lambda d: any("Pedro" in el.text for el in d.find_element(By.TAG_NAME, "li"))
+        lambda d: any("Pedro" in el.text for el in d.find_elements(By.TAG_NAME, "li"))
     )
 
     users = driver.find_element(By.TAG_NAME, "li")
