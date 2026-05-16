@@ -15,13 +15,7 @@ def client():
 
 def test_product_flow(client):
     # 1. Criar produto
-    response = client.post(
-        "/products",
-        json={
-            "name": "Notebook",
-            "quantity": 10
-        }
-    )
+    response = client.post("/products", json={"name": "Notebook", "quantity": 10})
 
     assert response.status_code == 201
 
@@ -35,11 +29,7 @@ def test_product_flow(client):
 
     # 3. Atualizar produto
     response = client.put(
-        f"/products/{product_id}",
-        json={
-            "name": "Notebook Gamer",
-            "quantity": 5
-        }
+        f"/products/{product_id}", json={"name": "Notebook Gamer", "quantity": 5}
     )
 
     assert response.status_code == 200
@@ -61,21 +51,9 @@ def test_product_flow(client):
 
 
 def test_list_products(client):
-    client.post(
-        "/products",
-        json={
-            "name": "Mouse",
-            "quantity": 20
-        }
-    )
+    client.post("/products", json={"name": "Mouse", "quantity": 20})
 
-    client.post(
-        "/products",
-        json={
-            "name": "Teclado",
-            "quantity": 15
-        }
-    )
+    client.post("/products", json={"name": "Teclado", "quantity": 15})
 
     response = client.get("/products")
 
@@ -86,29 +64,11 @@ def test_list_products(client):
 
 
 def test_create_3_new_products_and_list(client):
-    client.post(
-        "/products",
-        json={
-            "name": "Monitor",
-            "quantity": 8
-        }
-    )
+    client.post("/products", json={"name": "Monitor", "quantity": 8})
 
-    client.post(
-        "/products",
-        json={
-            "name": "Headset",
-            "quantity": 12
-        }
-    )
+    client.post("/products", json={"name": "Headset", "quantity": 12})
 
-    client.post(
-        "/products",
-        json={
-            "name": "Webcam",
-            "quantity": 6
-        }
-    )
+    client.post("/products", json={"name": "Webcam", "quantity": 6})
 
     response = client.get("/products")
 
@@ -119,43 +79,21 @@ def test_create_3_new_products_and_list(client):
 
 
 def test_should_return_400_when_product_already_exists(client):
-    client.post(
-        "/products",
-        json={
-            "name": "Notebook",
-            "quantity": 10
-        }
-    )
+    client.post("/products", json={"name": "Notebook", "quantity": 10})
 
-    response = client.post(
-        "/products",
-        json={
-            "name": "Notebook",
-            "quantity": 5
-        }
-    )
+    response = client.post("/products", json={"name": "Notebook", "quantity": 5})
 
     assert response.status_code == 400
 
 
 def test_should_update_product_quantity(client):
-    response = client.post(
-        "/products",
-        json={
-            "name": "Impressora",
-            "quantity": 3
-        }
-    )
+    response = client.post("/products", json={"name": "Impressora", "quantity": 3})
 
     product = response.get_json()
     product_id = product["id"]
 
     response = client.put(
-        f"/products/{product_id}",
-        json={
-            "name": "Impressora",
-            "quantity": 7
-        }
+        f"/products/{product_id}", json={"name": "Impressora", "quantity": 7}
     )
 
     assert response.status_code == 200
