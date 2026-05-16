@@ -6,9 +6,11 @@ def create_app():
 
     # from .routes import main
     from app.routes.user_routes import user_bp
+    from app.routes.estoque_routes import product_bp
 
     # app.register_blueprint(main)
     app.register_blueprint(user_bp)
+    app.register_blueprint(product_bp)
 
     # Nova Rota (interface)
     @app.route("/")
