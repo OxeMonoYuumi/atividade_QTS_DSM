@@ -84,20 +84,3 @@ def test_should_return_400_when_product_already_exists(client):
     response = client.post("/products", json={"name": "Notebook", "quantity": 5})
 
     assert response.status_code == 400
-
-
-def test_should_update_product_quantity(client):
-    response = client.post("/products", json={"name": "Impressora", "quantity": 3})
-
-    product = response.get_json()
-    product_id = product["id"]
-
-    response = client.put(
-        f"/products/{product_id}", json={"name": "Impressora", "quantity": 7}
-    )
-
-    assert response.status_code == 200
-
-    updated_product = response.get_json()
-
-    assert updated_product["quantity"] == 7

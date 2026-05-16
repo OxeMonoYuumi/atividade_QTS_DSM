@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Estoque</title>
+    </head>
+
+    <body>
+        <h1>Controle de Estoque</h1>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Nome do produto"
+        >
+
+        <input
+            type="number"
+            id="quantity"
+            placeholder="Quantidade"
+        >
+
+        <button id="submit">
+            Cadastrar Produto
+        </button>
+
+        <ul id="products"></ul>
+
+        <script>
+            async function loadProducts() {
+
+                const response = await fetch("/products");
+
+                const products = await response.json();
+
+                const list = document.getElementById("products");
+
+                list.innerHTML = "";
+
+                products.forEach(product => {
+
+                    const li = document.createElement("li");
+
+                    li.innerText =
+                        `${product.name} - Quantidade: ${product.quantity}`;
+
+                    list.appendChild(li);
+                });
+            }
+
+            document
+                .getElementById("submit")
+                .addEventListener("click", async () => {
+
+                    const name =
+                        document.getElementById("name").value;
+
+                    const quantity =
+                        document.getElementById("quantity").value;
+
+                    await fetch("/products", {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name,
+                            quantity: Number(quantity)
+                        })
+                    });
+
+                    document.getElementById("name").value = "";
+                    document.getElementById("quantity").value = "";
+
+                    loadProducts();
+                });
+
+            loadProducts();
+        </script>
+    </body>
+</html>
