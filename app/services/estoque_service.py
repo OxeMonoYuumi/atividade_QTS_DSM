@@ -13,19 +13,12 @@ def get_product_by_id(product_id):
 def create_product(data):
     global current_id
 
-    existing_product = next(
-        (p for p in products if p["name"] == data["name"]),
-        None
-    )
+    existing_product = next((p for p in products if p["name"] == data["name"]), None)
 
     if existing_product:
         return None
 
-    product = {
-        "id": current_id,
-        "name": data["name"],
-        "quantity": data["quantity"]
-    }
+    product = {"id": current_id, "name": data["name"], "quantity": data["quantity"]}
 
     products.append(product)
     current_id += 1
@@ -48,6 +41,4 @@ def update_product(product_id, data):
 def delete_product(product_id):
     global products
 
-    products = [
-        p for p in products if p["id"] != product_id
-    ]
+    products = [p for p in products if p["id"] != product_id]
