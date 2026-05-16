@@ -14,7 +14,7 @@ def test_create_product_e2e():
 
     driver = webdriver.Chrome(options=options)
 
-    driver.get("http://localhost:5000/products")
+    driver.get("http://localhost:5000/products/page")
 
     input_name = driver.find_element(By.ID, "name")
     input_quantity = driver.find_element(By.ID, "quantity")
@@ -50,7 +50,7 @@ def test_create_multiple_products_e2e():
 
     driver = webdriver.Chrome(options=options)
 
-    driver.get("http://localhost:5000/products")
+    driver.get("http://localhost:5000/products/page")
 
     input_name = driver.find_element(By.ID, "name")
     input_quantity = driver.find_element(By.ID, "quantity")
@@ -100,7 +100,7 @@ def test_create_products_and_validate_stock():
 
     driver = webdriver.Chrome(options=options)
 
-    driver.get("http://localhost:5000/products")
+    driver.get("http://localhost:5000/products/page")
 
     input_name = driver.find_element(By.ID, "name")
     input_quantity = driver.find_element(By.ID, "quantity")
