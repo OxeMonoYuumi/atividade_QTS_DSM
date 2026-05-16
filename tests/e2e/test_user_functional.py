@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
 
-# Teste modo incorreto com time.sleep
 def test_create_user_e2e():
     options = Options()
 
