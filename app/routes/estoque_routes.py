@@ -12,7 +12,7 @@ product_bp = Blueprint("products", __name__, url_prefix="/products")
 
 @product_bp.route("/page", methods=["GET"])
 def products_page():
-    return render_template("products.html")
+    return render_template("estoque.html")
 
 
 @product_bp.route("", methods=["GET"])
