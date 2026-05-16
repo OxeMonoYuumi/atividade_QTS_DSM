@@ -9,6 +9,10 @@ from app.services.estoque_service import (
 
 product_bp = Blueprint("products", __name__, url_prefix="/products")
 
+@product_bp.route("/page", methods=["GET"])
+def products_page():
+    return render_template("products.html")
+
 
 @product_bp.route("", methods=["GET"])
 def list_products():

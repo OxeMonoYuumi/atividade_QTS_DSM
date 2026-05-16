@@ -17,8 +17,4 @@ def create_app():
     def index():
         return render_template("users.html")
 
-    @product_bp.route("/page", methods=["GET"])
-    def products_page():
-        return render_template("products.html")
-
     return app
